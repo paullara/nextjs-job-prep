@@ -15,8 +15,8 @@ export async function createBlog(formData) {
     },
   });
 
-  revalidatePath("/blogs");
-  redirect("/blogs");
+  revalidatePath("/blog");
+  redirect("/blog");
 }
 
 export async function updateBlog(formData) {
@@ -35,16 +35,15 @@ export async function updateBlog(formData) {
   });
 
   revalidatePath(`/blogs/${id}`);
-  revalidatePath("/blogs");
-  redirect("/blogs");
+  redirect("/blog");
 }
 
 export async function deleteBlog(formData) {
   const id = Number(formData.get("id"));
 
-  await prisma.task.delete({
+  await prisma.blog.delete({
     where: {
-      id,
+      id: id,
     },
   });
 

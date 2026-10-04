@@ -21,7 +21,7 @@ export async function createTask(formData) {
 
 export async function updateTask(formData) {
   const id = Number(formData.get("id"));
-  const title = formData.get("title");
+  const titles = formData.get("title");
   const description = formData.get("description");
   const completed = formData.get("completed") === "on";
 
@@ -30,7 +30,7 @@ export async function updateTask(formData) {
       id: id,
     },
     data: {
-      title: title,
+      title: titles,
       description: description,
       completed: completed,
     },
