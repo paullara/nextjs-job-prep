@@ -1,10 +1,17 @@
 "use server";
 
+import { auth } from "../../auth.js";
 import prisma from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createTask(formData) {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
   const title = formData.get("title");
   const description = formData.get("description");
 
@@ -12,6 +19,7 @@ export async function createTask(formData) {
     data: {
       title,
       description,
+      userId: session.user.id,
     },
   });
 

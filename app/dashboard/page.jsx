@@ -1,5 +1,6 @@
 import { auth, signOut } from "../../auth.js";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -31,6 +32,12 @@ export default async function DashboardPage() {
       >
         <button type="submit">Sign out</button>
       </form>
+
+      <div>
+        <Link href="/tasks">
+          <p>Tasks</p>
+        </Link>
+      </div>
     </main>
   );
 }

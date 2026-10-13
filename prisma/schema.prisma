@@ -35,6 +35,8 @@ model Rant {
   problem   String
   rant      String?
   createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
 
 model User {
@@ -47,6 +49,7 @@ model User {
   accounts Account[]
   sessions Session[]
   tasks    Task[]
+  rants    Rant[]
 }
 
 model Account {

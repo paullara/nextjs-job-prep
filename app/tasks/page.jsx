@@ -1,8 +1,17 @@
+import { auth } from "../../auth.js";
 import prisma from "../lib/prisma";
 import Link from "next/link";
 
 export default async function TasksPage() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
   const tasks = await prisma.task.findMany({
+    where: {
+      userId: session.user.id,
+    },
     orderBy: {
       createdAt: "desc",
     },

@@ -15,7 +15,7 @@ export default async function RantPage() {
       </Link>
 
       {rants.map((rant) => (
-        <Link href={`/rants/${id}`} key={rant.id}>
+        <Link href={`/rants/${rant.id}`} key={rant.id}>
           <div>
             <h2>{rant.problem}</h2>
             <p>{rant.rant}</p>
